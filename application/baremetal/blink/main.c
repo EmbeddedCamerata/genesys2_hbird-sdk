@@ -35,45 +35,40 @@ OF SUCH DAMAGE.
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-#include "hbird_sdk_soc.h"
-
-#define LED_GPIO_MASK (1<<0)
-#define LED_GPIO_PORT GPIOA
+#include "hbird_sdk_hal.h"
 
 void led_init()
 {
-    gpio_enable_output(LED_GPIO_PORT, LED_GPIO_MASK);
+    gpio_enable_output(GPIOA, SOC_LED_0_GPIO_MASK);
 }
 
 void led_on()
 {
-    /*
-     * LED is hardwired with 3.3V on the anode, we control the cathode
-     * (negative side) so we need to use reversed logic: bit clear is on.
-     */
-    gpio_write(LED_GPIO_PORT, LED_GPIO_MASK, 1);
+    gpio_write(GPIOA, SOC_LED_0_GPIO_MASK, 1);
 }
 
 void led_off()
 {
-    gpio_write(LED_GPIO_PORT, LED_GPIO_MASK, 0);
+    gpio_write(GPIOA, SOC_LED_0_GPIO_MASK, 0);
 }
-/*!
-    \brief      main function
-    \param[in]  none
-    \param[out] none
-    \retval     none
-*/
+
+void led_toggle()
+{
+    gpio_write(GPIOA, SOC_LED_0_GPIO_MASK, 1 - gpio_read(GPIOA, SOC_LED_0_GPIO_MASK));
+}
+
 int main(void)
 {
     led_init();
 
     while(1){
-        /* turn on builtin led */
-        led_on();
-        delay_1ms(1000);
-        /* turn off uiltin led */
-        led_off();
+        // led_on();
+        // delay_1ms(1000);
+        // led_off();
+        // delay_1ms(1000);
+        
+        // Or below
+        led_toggle();
         delay_1ms(1000);
     }
 }

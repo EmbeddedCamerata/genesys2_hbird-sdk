@@ -1,19 +1,18 @@
 ## Package Base Information
-name: app-nsdk_blink
+name: app-hsdk_btn_irq
 owner: nuclei
 version:
-description: Blink
+description: btn_irq
 type: app
 keywords:
-  - baremetal
-  - get started
-category: baremetal application
+  - app
+  - risc-v
 license:
 homepage:
 
 ## Package Dependency
 dependencies:
-  - name: sdk-nuclei_sdk
+  - name: sdk-hbird_sdk
     version:
 
 ## Package Configurations
