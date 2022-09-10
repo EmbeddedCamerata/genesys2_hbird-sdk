@@ -8,10 +8,10 @@
 
 #include "board_genesys2.h"
 
-#define SOC_DEBUG_UART      UART0
+#define SOC_DEBUG_UART  UART0
 
 #ifndef HBIRD_BANNER
-#define HBIRD_BANNER       1
+#define HBIRD_BANNER    1
 #endif
 
 #ifdef __cplusplus
